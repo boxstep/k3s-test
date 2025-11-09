@@ -560,7 +560,7 @@ defaultAuthMethod:
 
   # Vault Auth method to be used with the VaultAuthMethod CR
   # @type: string
-  method: approle
+  method: appRole
 
   # Mount path for the Vault Auth Method.
   # @type: string
