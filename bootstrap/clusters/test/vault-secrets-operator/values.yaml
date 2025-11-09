@@ -595,7 +595,7 @@ defaultAuthMethod:
     # This is a required field when using appRole and must be setup in Vault prior to deploying the
     # helm chart.
     # @type: string
-    secretRef: "vault-approle-creds"
+    secretRef: "vaultsystem/vault-approle-creds"
 
   # Params to use when authenticating to Vault
   # params:
