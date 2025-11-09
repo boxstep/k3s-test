@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "10"
   creationTimestamp: null
   name: ingress-nginx
   namespace: argocd
@@ -44,7 +44,6 @@ spec:
           - $values/bootstrap/clusters/{{.name}}/ingress-nginx/values.yaml
       - repoURL: 'https://github.com/boxstep/k3s-test.git'
         targetRevision: HEAD
-        #path: bootstrap/clusters/{{.name}}/metallb
         ref: values
       syncPolicy:
         syncOptions:
