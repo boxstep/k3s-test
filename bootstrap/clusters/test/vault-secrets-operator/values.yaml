@@ -715,11 +715,11 @@ defaultAuthMethod:
 
     # Namespace of the VaultAuthGlobal CR to reference.
     # @type: string
-    namespace: ""
+    namespace: "vault-system"
 
     # allow default globals
     # @type: boolean
-    allowDefault:
+    allowDefault: true
 
     mergeStrategy:
       # merge strategy for headers
