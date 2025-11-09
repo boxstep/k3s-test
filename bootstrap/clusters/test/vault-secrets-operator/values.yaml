@@ -708,10 +708,10 @@ defaultAuthMethod:
     #  toggles the inclusion of the VaultAuthGlobal configuration in the
     # default VaultAuth CR.
     # @type: boolean
-    enabled: false
+    enabled: true
     # Name of the VaultAuthGlobal CR to reference.
     # @type: string
-    name: ""
+    name: "vault-auth-global"
 
     # Namespace of the VaultAuthGlobal CR to reference.
     # @type: string
