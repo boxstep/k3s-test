@@ -9,8 +9,7 @@ spec:
       server: "https://bao.homelab.local"
       path: "k3s-test"
       version: "v2"
-      tlsConfig:
-        insecureSkipTlsVerify: true
+      skipTLSVerify: true
       auth:
         # Authenticate against Vault using a Kubernetes ServiceAccount
         # token stored in a Secret.
