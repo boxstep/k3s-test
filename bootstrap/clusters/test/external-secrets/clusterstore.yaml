@@ -7,7 +7,7 @@ spec:
   provider:
     vault:
       server: "http://192.168.7.50:8200"
-      path: "k3s-test"
+      path: "k3s-test/k3s-test"
       version: "v2"
       auth:
         # Authenticate against Vault using a Kubernetes ServiceAccount
