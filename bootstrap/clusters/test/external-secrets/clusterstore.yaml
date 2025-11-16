@@ -15,7 +15,7 @@ spec:
         # https://www.vaultproject.io/docs/auth/kubernetes
         appRole:
           path: "approle"
-          roleId: "ad129630-3278-a77c-6a06-10180293647c"
+          roleId: "54f7f475-e88d-9b19-9213-0a8bae0d71b8"
           secretRef:
             name: "vault-approle-creds"
             namespace: "external-secrets"
