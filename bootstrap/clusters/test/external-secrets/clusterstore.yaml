@@ -19,4 +19,4 @@ spec:
           secretRef:
             name: "vault-approle-creds"
             namespace: "external-secrets"
-            key: "secret-id"
+            key: "secret_id"
