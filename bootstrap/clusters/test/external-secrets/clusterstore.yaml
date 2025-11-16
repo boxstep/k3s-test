@@ -14,7 +14,7 @@ spec:
         # token stored in a Secret.
         # https://www.vaultproject.io/docs/auth/kubernetes
         appRole:
-          path: "k3s-test"
+          path: "approle"
           roleId: "ad129630-3278-a77c-6a06-10180293647c"
           secretRef:
             name: "vault-approle-creds"
