@@ -14,8 +14,10 @@ spec:
         # token stored in a Secret.
         # https://www.vaultproject.io/docs/auth/kubernetes
         appRole:
-          #path: "approle"
-          roleId: "54f7f475-e88d-9b19-9213-0a8bae0d71b8"
+          roleIdRef:
+            name: vault-approle-creds
+            namespace: external-secrets
+            key: role_id
           secretRef:
             name: "vault-approle-creds"
             namespace: "external-secrets"
