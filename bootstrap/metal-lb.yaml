@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  creationTimestamp: null
+  name: metallb-system
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          name: test
+      values:
+        revision: '0.15.2'
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: argocd-autopilot
+        app.kubernetes.io/name: metallb-system
+      name: metallb-system-{{.name}}
+      namespace: metallb-system
+    spec:
+      destination:
+        server: '{{.server}}'
+        namespace: metallb-system
+      ignoreDifferences:
+      - group: argoproj.io
+        jsonPointers:
+        - /status
+        kind: Application
+      project: default
+      sources:
+      - repoURL: 'https://metallb.github.io/metallb'
+        chart: metallb
+        targetRevision: '{{.values.revision}}'
+        helm:
+          valueFiles:
+          - $values/bootstrap/clusters/{{.name}}/metallb/values.yaml
+      - repoURL: 'https://github.com/boxstep/k3s-test.git'
+        targetRevision: HEAD
+        path: bootstrap/clusters/{{.name}}/metallb
+        ref: values
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          allowEmpty: true
+          Prune: true
+          selfHeal: true
+status: {}
