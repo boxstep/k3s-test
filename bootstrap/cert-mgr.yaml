@@ -15,7 +15,7 @@ spec:
         matchLabels:
           name: test
       values:
-        revision: '1.19.1'
+        revision: '1.19.0'
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
