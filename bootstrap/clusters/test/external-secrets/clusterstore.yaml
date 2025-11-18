@@ -19,6 +19,6 @@ spec:
             namespace: external-secrets
             key: role_id
           secretRef:
-            name: "vault-approle-creds"
-            namespace: "external-secrets"
-            key: "secret_id"
+            name: vault-approle-creds
+            namespace: external-secrets
+            key: secret_id
