@@ -42,7 +42,7 @@ spec:
           version: v3
           valueFiles:
           - $values/bootstrap/clusters/{{.name}}/cert-manager/values.yaml
-      - repoURL: 'https://github.com/boxstep/kube-argocd.git'
+      - repoURL: 'https://github.com/boxstep/k3s-test.git'
         targetRevision: HEAD
         path: bootstrap/clusters/{{.name}}/cert-manager
         ref: values
