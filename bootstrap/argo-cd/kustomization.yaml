@@ -3,3 +3,9 @@ kind: Kustomization
 namespace: argocd
 resources:
 - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.20
+
+configMapGenerator:
+- behavior: merge
+  name: argocd-cmd-params-cm
+  literals:
+  - server.insecure=true
