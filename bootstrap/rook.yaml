@@ -16,7 +16,7 @@ spec:
       values:
         revision: '1.18.7'
   syncPolicy:
-    preserveResourcesOnDeletion: true
+    preserveResourcesOnDeletion: false
   template:
     metadata:
       labels:
