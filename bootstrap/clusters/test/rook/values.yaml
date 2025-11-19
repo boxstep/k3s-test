@@ -538,7 +538,7 @@ cephBlockPools:
 
 # -- A list of CephFileSystem configurations to deploy
 # @default -- See [below](#ceph-file-systems)
-cephFileSystems: {}
+cephFileSystems: []
   # - name: ceph-filesystem
   #   # see https://github.com/rook/rook/blob/master/Documentation/CRDs/Shared-Filesystem/ceph-filesystem-crd.md#filesystem-settings for available configuration
   #   spec:
@@ -615,7 +615,7 @@ cephBlockPoolsVolumeSnapshotClass:
 
 # -- A list of CephObjectStore configurations to deploy
 # @default -- See [below](#ceph-object-stores)
-cephObjectStores: {}
+cephObjectStores: []
   # - name: rook-s3
   #   # see https://github.com/rook/rook/blob/master/Documentation/CRDs/Object-Storage/ceph-object-store-crd.md#object-store-settings for available configuration
   #   spec:
