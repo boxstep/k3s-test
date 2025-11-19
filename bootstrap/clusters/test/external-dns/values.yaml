@@ -83,7 +83,7 @@ shareProcessNamespace: false
 # -- [Pod security context](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#podsecuritycontext-v1-core), this supports full customisation.
 # @default -- See _values.yaml_
 podSecurityContext:
-  runAsNonRoot: true
+  runAsNonRoot: false
   fsGroup: 65534
   seccompProfile:
     type: RuntimeDefault
