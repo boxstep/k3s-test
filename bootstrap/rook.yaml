@@ -41,6 +41,12 @@ spec:
         helm:
           valueFiles:
           - $values/bootstrap/clusters/{{.name}}/rook/values.yaml
+      - repoURL: 'https://charts.rook.io/release'
+        chart: rook-ceph
+        targetRevision: '{{.values.revision}}'
+        helm:
+          valueFiles:
+          - $values/bootstrap/clusters/{{.name}}/rook/values.yaml
       - repoURL: 'https://github.com/boxstep/k3s-test.git'
         targetRevision: HEAD
         ref: values
