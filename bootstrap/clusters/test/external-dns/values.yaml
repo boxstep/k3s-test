@@ -13,7 +13,7 @@ image:
   tag:
   # -- Image pull policy for the `external-dns` container.
   pullPolicy: IfNotPresent
-  args: ["--source=crd", "--provider=webhook"]
+  #args: ["--source=crd", "--provider=webhook"]
 
 # -- Image pull secrets.
 imagePullSecrets: []
@@ -22,7 +22,7 @@ imagePullSecrets: []
 nameOverride:
 
 # -- (string) Override the full name of the chart.
-fullnameOverride: external-dns-mikrotik
+fullnameOverride:
 
 # -- Labels to add to all chart resources.
 commonLabels: {}
@@ -37,7 +37,7 @@ serviceAccount:
   # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
   name:
   # -- Set this to `false` to [opt out of API credential automounting](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting) for the `ServiceAccount`.
-  automountServiceAccountToken:
+  automountServiceAccountToken: true
 
 service:
   # -- Service annotations.
@@ -59,7 +59,7 @@ rbac:
 deploymentAnnotations: {}
 
 # -- Extra containers to add to the `Deployment`.
-extraContainers: {}
+extraContainers: []
 
 # -- [Deployment Strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy).
 deploymentStrategy:
@@ -75,7 +75,7 @@ podLabels: {}
 podAnnotations: {}
 
 # -- (bool) Set this to `false` to [opt out of API credential automounting](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting) for the `Pod`.
-automountServiceAccountToken:
+automountServiceAccountToken: true
 
 # -- If `true`, the `Pod` will have [process namespace sharing](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/) enabled.
 shareProcessNamespace: false
@@ -83,7 +83,7 @@ shareProcessNamespace: false
 # -- [Pod security context](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#podsecuritycontext-v1-core), this supports full customisation.
 # @default -- See _values.yaml_
 podSecurityContext:
-  runAsNonRoot: false
+  runAsNonRoot: true
   fsGroup: 65534
   seccompProfile:
     type: RuntimeDefault
@@ -109,7 +109,7 @@ securityContext:
   privileged: false
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: true
-  runAsNonRoot: false
+  runAsNonRoot: true
   runAsUser: 65532
   runAsGroup: 65532
   capabilities:
@@ -120,15 +120,15 @@ env: []
 
 # -- [Liveness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) configuration for the `external-dns` container.
 # @default -- See _values.yaml_
-#livenessProbe:
-#  httpGet:
-#    path: /healthz
-#    port: http
-#  initialDelaySeconds: 10
-#  periodSeconds: 10
-#  timeoutSeconds: 5
-#  failureThreshold: 2
-#  successThreshold: 1
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 2
+  successThreshold: 1
 
 # -- [Readiness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) configuration for the `external-dns` container.
 # @default -- See _values.yaml_
