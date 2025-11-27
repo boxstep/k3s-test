@@ -500,13 +500,13 @@ ingress:
   enabled: true
   # -- IngressClass resource that contains ingress configuration, including the name of the Ingress controller.
   # ingressClassName can replace the kubernetes.io/ingress.class annotation used in earlier Kubernetes releases.
-  ingressClassName: ~
+  ingressClassName: nginx
   # -- Hostname of the Layer 7 load balancer.
-  host: longhorn.k3s-test.homelab.local
+  host: longhorn.k3s-t.homelab.local
   # -- Setting that allows you to enable TLS on ingress records.
   tls: true
   # -- Setting that allows you to enable secure connections to the Longhorn UI service via port 443.
-  secureBackends: false
+  secureBackends: true
   # -- TLS secret that contains the private key and certificate to be used for TLS. This setting applies only when TLS is enabled on ingress records.
   tlsSecret: longhorn.local-tls
   # -- Default ingress path. You can access the Longhorn UI by following the full ingress path {{host}}+{{path}}.
@@ -522,8 +522,9 @@ ingress:
   ## If tls is set to true, annotation ingress.kubernetes.io/secure-backends: "true" will automatically be set
   # -- Ingress annotations in the form of key-value pairs.
   annotations:
-  #  kubernetes.io/ingress.class: nginx
-  #  kubernetes.io/tls-acme: true
+    cert-manager.io/cluster-issuer: ca-issuer
+    cert-manager.io/common-name: longhorn.k3s-t.homelab.local
+    ingress.kubernetes.io/force-ssl-redirect: "false"
 
   # -- Secret that contains a TLS private key and certificate. Use secrets if you want to use your own certificates to secure ingresses.
   secrets:
