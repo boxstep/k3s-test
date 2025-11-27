@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  creationTimestamp: null
+  name: home-assistant
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          name: test
+      values:
+        revision: '0.3.32'
+  syncPolicy:
+    preserveResourcesOnDeletion: false
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: argocd-autopilot
+        app.kubernetes.io/name: home-assistant
+      name: home-assistant
+    spec:
+      destination:
+        server: '{{.server}}'
+        namespace: ha
+      ignoreDifferences:
+      - group: argoproj.io
+        jsonPointers:
+        - /status
+        kind: Application
+      project: default
+      sources:
+      - repoURL: 'http://pajikos.github.io/home-assistant-helm-chart/'
+        chart: home-assistant
+        targetRevision: '{{.values.revision}}'
+        helm:
+          version: v3
+          valueFiles:
+          - $values/apps/{{.name}}/home-assistant/values.yaml
+      - repoURL: 'https://github.com/boxstep/k3s-test.git'
+        targetRevision: HEAD
+        path: apps/{{.name}}/home-assistant
+        ref: values
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          allowEmpty: true
+          prune: true
+          selfHeal: true
+status: {}
