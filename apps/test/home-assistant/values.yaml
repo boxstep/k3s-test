@@ -79,13 +79,13 @@ hostNetwork: true
 # dnsPolicy: ClusterFirst
 
 # Container security context settings
-securityContext:
-  capabilities:
-    drop:
-    - ALL
-  readOnlyRootFilesystem: false
-  runAsNonRoot: true
-  runAsUser: 1000
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: false
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
 # Pod's DNS Configuration
 # https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
