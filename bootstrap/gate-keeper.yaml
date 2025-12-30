@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  creationTimestamp: null
+  name: gate-keeper
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          name: test
+      values:
+        revision: '3.21.0'
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: argocd-autopilot
+        app.kubernetes.io/name: gate-keeper
+      name: gate-keeper-{{.name}}
+      namespace: gate-keeper
+    spec:
+      destination:
+        server: '{{.server}}'
+        namespace: gate-keeper
+      ignoreDifferences:
+      - group: argoproj.io
+        jsonPointers:
+        - /status
+        kind: Application
+      project: default
+      sources:
+      - repoURL: 'https://open-policy-agent.github.io/gatekeeper/charts'
+        chart: gatekeeper
+        targetRevision: '{{.values.revision}}'
+        helm:
+          valueFiles:
+          - $values/bootstrap/clusters/{{.name}}/gate-keeper/values.yaml
+      - repoURL: 'https://github.com/boxstep/k3s-test.git'
+        targetRevision: HEAD
+        path: bootstrap/clusters/{{.name}}/gate-keeper
+        ref: values
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          allowEmpty: true
+          prune: true
+          selfHeal: true
+status: {}
