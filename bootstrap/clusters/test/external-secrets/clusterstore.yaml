@@ -6,7 +6,7 @@ metadata:
 spec:
   provider:
     vault:
-      server: "http://192.168.7.50:8200"
+      server: "https://fortknox01.homelab.local:8200"
       path: "k3s-test"
       version: "v2"
       auth:
