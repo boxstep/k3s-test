@@ -1,0 +1,20 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: inject-ca-volumemount
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    scope: Namespaced
+    namespaces: ["*"]
+  location: "spec.containers[name:*].volumeMounts[name:trusted-ca-volume]"
+  parameters:
+    assign:
+      value:
+        name: trusted-ca-volume
+        mountPath: /etc/ssl/certs/ca-certificates.crt
+        subPath: root-cert.crt # The key inside your ConfigMap
+        readOnly: true

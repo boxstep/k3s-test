@@ -9,7 +9,7 @@ spec:
     versions: ["v1"]
   match:
     scope: Namespaced
-    namespaces: ["external-secrets"] 
+    namespaces: ["*"] 
   location: "spec.volumes[name:trusted-ca-volume]"
   parameters:
     assign:
