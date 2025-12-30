@@ -16,5 +16,5 @@ spec:
       value:
         name: trusted-ca-volume
         mountPath: /etc/ssl/certs/ca-certificates.crt
-        subPath: root-cert.crt # The key inside your ConfigMap
+        subPath: homelab-local-bundle.crt # The key inside your ConfigMap
         readOnly: true

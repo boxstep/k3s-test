@@ -16,4 +16,4 @@ spec:
       value:
         name: trusted-ca-volume
         configMap:
-          name: homelab-local-bundle.crt
+          name: trust-manager-homelab-local
