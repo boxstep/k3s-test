@@ -1,0 +1,13 @@
+apiVersion: trust.cert-manager.io/v1alpha1
+kind: Bundle
+metadata:
+  name: trust-manager-homelab-local
+spec:
+  sources:
+  - useDefaultCAs: true
+  - configMap:
+      name: "homelab-local.crt"
+      key: "root-cert.crt"
+  target:
+    configMap:
+      key: "homelab-local-ca.crt"

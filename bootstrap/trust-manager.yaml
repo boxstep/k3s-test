@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  creationTimestamp: null
+  name: trust-manager
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          name: test
+      values:
+        revision: '0.20.3'
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: argocd-autopilot
+        app.kubernetes.io/name: trust-manager
+      name: trust-manager-{{.name}}
+      namespace: trust-manager
+    spec:
+      destination:
+        server: '{{.server}}'
+        namespace: trust-manager
+      ignoreDifferences:
+      - group: argoproj.io
+        jsonPointers:
+        - /status
+        kind: Application
+      project: default
+      sources:
+      - repoURL: 'oci://quay.io/jetstack/charts/trust-manager'
+        chart: trust-manager
+        targetRevision: '{{.values.revision}}'
+        helm:
+          valueFiles:
+          - $values/bootstrap/clusters/{{.name}}/trust-manager/values.yaml
+      - repoURL: 'https://github.com/boxstep/k3s-test.git'
+        targetRevision: HEAD
+        path: bootstrap/clusters/{{.name}}/trust-manager
+        ref: values
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          allowEmpty: true
+          prune: true
+          selfHeal: true
+status: {}
