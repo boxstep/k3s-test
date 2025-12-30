@@ -1,0 +1,19 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: inject-ca-volume
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    scope: Namespaced
+    namespaces: ["external-secrets"] 
+  location: "spec.volumes[name:trusted-ca-volume]"
+  parameters:
+    assign:
+      value:
+        name: trusted-ca-volume
+        configMap:
+          name: homelab-local-bundle.crt
