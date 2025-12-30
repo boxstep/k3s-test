@@ -6,7 +6,7 @@ spec:
   sources:
   - useDefaultCAs: true
   - configMap:
-      name: "homelab-local.crt"
+      name: "homelab-local"
       key: "root-cert.crt"
   target:
     configMap:
