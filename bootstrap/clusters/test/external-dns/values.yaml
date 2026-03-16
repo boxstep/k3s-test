@@ -265,7 +265,7 @@ provider:
           secretKeyRef:
             name: mikrotik-api
             key: MIKROTIK_SKIP_TLS_VERIFY
-    args: ["run",--server-port=8080,--server-host=localhost]
+    args: ["run",--server-port=8888,--server-host=127.0.0.1]
 
     service:
       # -- Webhook exposed HTTP port for the service.
