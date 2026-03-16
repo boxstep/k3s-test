@@ -269,7 +269,7 @@ provider:
         valueFrom:
           fieldRef:
             fieldPath: status.podIP
-    args: ["run","--server-port=8888","--server-host=$(POD_IP)"]
+    args: ["run","--server-port=8888","--server-host=0.0.0.0"]
 
     service:
       # -- Webhook exposed HTTP port for the service.
