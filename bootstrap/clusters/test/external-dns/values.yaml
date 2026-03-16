@@ -265,7 +265,11 @@ provider:
           secretKeyRef:
             name: mikrotik-api
             key: MIKROTIK_SKIP_TLS_VERIFY
-    args: ["run","--server-port=8888","--server-host=external-dns.external-dns.svc.cluster.local"]
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+    args: ["run","--server-port=8888","--server-host=$(POD_IP)"]
 
     service:
       # -- Webhook exposed HTTP port for the service.
