@@ -269,7 +269,7 @@ provider:
 
     service:
       # -- Webhook exposed HTTP port for the service.
-      port: 8888
+      port: 8080
     # -- Optional [Service Monitor](https://prometheus-operator.dev/docs/operator/design/#servicemonitor) configuration for the `webhook` container.
     # @default -- See _values.yaml_
     serviceMonitor:
