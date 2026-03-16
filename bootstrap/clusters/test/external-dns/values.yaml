@@ -123,7 +123,7 @@ env: []
 livenessProbe:
   httpGet:
     path: /healthz
-    port: http
+    port: 7979
   initialDelaySeconds: 10
   periodSeconds: 10
   timeoutSeconds: 5
@@ -135,7 +135,7 @@ livenessProbe:
 readinessProbe:
   httpGet:
     path: /healthz
-    port: http
+    port: 7979
   initialDelaySeconds: 5
   periodSeconds: 10
   timeoutSeconds: 5
