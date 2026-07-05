@@ -27,3 +27,9 @@ infra_apps:
         releaseName: external-secrets
         namespace: external-secrets
         version: 0.17.0
+      hello-world:
+        chart: hello-world
+        repoURL: https://helm.github.io/examples
+        releaseName: hello-world
+        namespace: default
+        version: 1.0.0

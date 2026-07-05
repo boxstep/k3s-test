@@ -3,7 +3,7 @@
   "userGivenName": matrix,
   "destNamespace": argocd,
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "config/environments/main",
+  "srcPath": "",
   "srcRepoURL": "https://boxstep.github.io/argocd-matrix",
   "srcTargetRevision": "0.1.0",
   "labels": { "app.kubernetes.io/managed-by": "argocd-autopilot" },
