@@ -1,4 +1,4 @@
-instance_id: "k3s-t-matrix"
+instance_id: "k3s-t"
 instance_name: "test"
 # -- The project to create the ApplicationSet in
 project: "main"
