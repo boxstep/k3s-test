@@ -21,9 +21,9 @@ infra_apps:
         selfHeal: true
         prune: true
     helm_charts:
-      # external-secrets:
-      #   chart: external-secrets
-      #   repoURL: https://charts.external-secrets.io
-      #   releaseName: external-secrets
-      #   namespace: external-secrets
-      #   version: 0.17.0
+      external-secrets:
+        chart: external-secrets
+        repoURL: https://charts.external-secrets.io
+        releaseName: external-secrets
+        namespace: external-secrets
+        version: 0.17.0
