@@ -1,0 +1,15 @@
+{
+  "appName": matrix,
+  "userGivenName": matrix,
+  "destNamespace": argocd,
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "",
+  "srcRepoURL": "https://boxstep.github.io/argocd-matrix",
+  "srcTargetRevision": "0.1.0",
+  "labels": { "app.kubernetes.io/managed-by": "argocd-autopilot" },
+  "annotations": null,
+  "exclude": "",
+  "include": "",
+  "chart": "matrix",
+  "project": "main"
+}
