@@ -1,0 +1,24 @@
+apiVersion: external-secrets.io/v1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+  namespace: default
+spec:
+  provider:
+    vault:
+      server: "https://fortknox01.homelab.local:8200"
+      path: "k3s-test"
+      version: "v2"
+      auth:
+        # Authenticate against Vault using a Kubernetes ServiceAccount
+        # token stored in a Secret.
+        # https://www.vaultproject.io/docs/auth/kubernetes
+        appRole:
+          roleRef:
+            name: vault-approle-creds
+            namespace: external-secrets
+            key: role_id
+          secretRef:
+            name: vault-approle-creds
+            namespace: external-secrets
+            key: secret_id
