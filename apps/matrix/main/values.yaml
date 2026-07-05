@@ -6,7 +6,7 @@ project: "main"
 
 defaults:
   # -- The URL of the Git repository to use for configuration
-  config_repo_url: https://github.com/boxstep/k3s-t-matrix.git
+  config_repo_url: https://github.com/boxstep/k3s-test.git
   team: "main"
 
 
@@ -21,9 +21,9 @@ infra_apps:
         selfHeal: true
         prune: true
     helm_charts:
-      external-secrets:
-        chart: external-secrets
-        repoURL: https://charts.external-secrets.io
-        releaseName: external-secrets
-        namespace: external-secrets
-        version: 0.17.0
+      # external-secrets:
+      #   chart: external-secrets
+      #   repoURL: https://charts.external-secrets.io
+      #   releaseName: external-secrets
+      #   namespace: external-secrets
+      #   version: 0.17.0
