@@ -1,0 +1,29 @@
+instance_id: "k3s-t-matrix"
+instance_name: "test"
+# -- The project to create the ApplicationSet in
+project: "main"
+
+
+defaults:
+  # -- The URL of the Git repository to use for configuration
+  config_repo_url: https://github.com/boxstep/k3s-t-matrix.git
+  team: "main"
+
+
+# -- The list of applications to create
+infra_apps:
+  # Example application group
+  main-app-group:
+    config_branch: main
+    automated_sync:
+      enabled: true
+      settings:
+        selfHeal: true
+        prune: true
+    helm_charts:
+      external-secrets:
+        chart: external-secrets
+        repoURL: https://charts.external-secrets.io
+        releaseName: external-secrets
+        namespace: external-secrets
+        version: 0.17.0
